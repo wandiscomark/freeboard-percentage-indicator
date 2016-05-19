@@ -11,6 +11,8 @@
         var valueElement = $('<div class="tw-value"></div>');
         var unitsElement = $('<div class="tw-unit"></div>');
         var chartid = 'percentbarone';
+        var titlebadges = true;
+        var titleclass = 'badge-red';
         var currentValue = 0;
         var percentValue = 0;
 
@@ -30,27 +32,23 @@
             $(element).empty();
             $(element).append('<link rel="stylesheet" href="/plugins/percentbar/style.css" />');
 
-            percent = Math.floor(Math.random(0,100)*100);
+            percent = Math.floor(Math.random(0, 100) * 100);
             percent = percentValue;
-            id='percentbarone' ;
-            if(chartid.length) {
-                id=chartid;
+            id = 'percentbarone';
+            if (chartid.length) {
+                id = chartid;
             }
             var node = document.createElement("div");
             node.className = 'percentredbg';
             var inner = document.createElement("div");
-            inner.className='percentgreenbg';
-            inner.id=id;
+            inner.className = 'percentgreenbg';
+            inner.id = id;
             inner.innerHTML = percent + "%";
             inner.style.width = '1%';
             inner.style.width = '0%';
             node.appendChild(inner);
-         
-
             $(displayElement).append(titleElement).append(node);
-
             $(element).append(displayElement);
-
             updateValueSizing();
         }
 
@@ -62,7 +60,15 @@
             if(newSettings.chartid){
                 chartid = newSettings.chartid;
             }
-
+            if(newSettings.titlebadges){
+                titlebadges = newSettings.titlebadges;
+                titleclass = newSettings.titleclass;
+                titleElement = $('<span class="percentbarbadge ' + titleclass + '"></span>');
+            }
+            if(newSettings.titleclass){
+                titleclass = newSettings.titleclass;
+                titleElement = $('<span class="percentbarbadge ' + titleclass + '"></span>');
+            }
             if(shouldDisplayTitle)
             {
                 titleElement.html((_.isUndefined(newSettings.title) ? "" : newSettings.title));
@@ -193,6 +199,18 @@
                 name: "chartid",
                 display_name: "Chart ID (unique, no spaces)",
                 type: "text"
+            },
+            {
+                name: "titlebadges",
+                display_name: "Title Badges",
+                type: "boolean",
+                default_value:true,
+            },
+             {
+                name: "titleclass",
+                display_name: "Title Badge class",
+                type: "text",
+                default_value:"pbadge-red",
             }
         ],
         newInstance: function (settings, newInstanceCallback) {
