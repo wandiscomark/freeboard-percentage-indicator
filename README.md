@@ -14,4 +14,4 @@ eg:
 
 It should then appear in the dropdown menu of available widget types
 
-
+See example.png to see what it looks like, imagine the lovely animations (using css transitions) 
