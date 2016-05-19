@@ -30,9 +30,6 @@
             $(element).empty();
             $(element).append('<link rel="stylesheet" href="/plugins/percentbar/style.css" />');
 
-            console.log(currentValue);
-            console.log(percentValue);
-
             percent = Math.floor(Math.random(0,100)*100);
             percent = percentValue;
             id='percentbarone' ;
